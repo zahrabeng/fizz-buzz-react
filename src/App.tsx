@@ -1,7 +1,10 @@
-import { greet } from "./utils/greet";
+//import { greet } from "./utils/greet";
+import RenderFizz from "./components/renderfizz";
 
 function App(): JSX.Element {
-  return <h1>{greet("World")}</h1>;
+  return <>
+        <RenderFizz/>
+        </>
 }
 
 export default App;
