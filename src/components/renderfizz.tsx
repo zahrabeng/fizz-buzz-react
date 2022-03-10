@@ -2,18 +2,19 @@ import { useState } from "react";
 import eachChar from "./shiftingArray";
 
 export default function RenderFizz(): JSX.Element {
-  const [FizzBuzzCurrentRender, queueRerenderWithNewFizzBuzz] = useState<
+  const [FizzBuzzState, setFizzBuzzState] = useState<
     string | number
   >();
-  const [FizzBuzzReRender, queueReRerenderWithNewFizzBuzz] = useState<any[]>(
+
+  const [FizzBuzzReRender, setFizzBuzzRerender] = useState<any[]>(
     []
   );
 
   const handleStoreCurrentCount = () => {
-    queueRerenderWithNewFizzBuzz(eachChar());
-    queueReRerenderWithNewFizzBuzz([
+    setFizzBuzzState(eachChar());
+    setFizzBuzzRerender([
       ...FizzBuzzReRender,
-      FizzBuzzCurrentRender,
+      FizzBuzzState,
     ]);
   };
 
@@ -25,7 +26,7 @@ export default function RenderFizz(): JSX.Element {
 
   return (
     <>
-      <p>FizzBuzz: {FizzBuzzCurrentRender}</p>
+      <p>FizzBuzz: {FizzBuzzState}</p>
       <p>FizzBuzz List: {fizzBuzzArray}</p>
       <button onClick={handleStoreCurrentCount}>NEXT</button>
     </>
