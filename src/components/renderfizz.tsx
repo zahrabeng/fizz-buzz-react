@@ -1,17 +1,31 @@
-//import fizzBuzz from "./fizzbuzz";
 import { useState } from "react";
-import eachChar from "./fizzorbuzz";
+import eachChar from "./shiftingArray";
 
 
 
 export default function RenderFizz(): JSX.Element{
     const [FizzBuzzCurrentRender, queueRerenderWithNewFizzBuzz] =
     useState <string|number>(); 
+    const [FizzBuzzReRender, queueReRerenderWithNewFizzBuzz] =
+    useState <any[]>([]); 
 
-    return(
+    const handleStoreCurrentCount = () => {
+        queueRerenderWithNewFizzBuzz(eachChar())
+        queueReRerenderWithNewFizzBuzz([...FizzBuzzReRender,FizzBuzzCurrentRender]);
+      };
+    
+      const fizzBuzzArray = FizzBuzzReRender.map((fizz) =>
+      <><li>
+          {fizz}
+      </li>
+      </>
+      )
+
+    return (
         <>
         <p>FizzBuzz: {FizzBuzzCurrentRender}</p>
-        <button onClick={() => queueRerenderWithNewFizzBuzz(eachChar())}>NEXT</button>
+        <p>FizzBuzz List: {fizzBuzzArray}</p>
+        <button onClick={handleStoreCurrentCount}>NEXT</button>
         </>
     )
 }
