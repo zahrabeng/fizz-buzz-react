@@ -2,9 +2,11 @@
 import RenderFizz from "./components/renderfizz";
 
 function App(): JSX.Element {
-  return <>
-        <RenderFizz/>
-        </>
+  return (
+    <>
+      <RenderFizz />
+    </>
+  );
 }
 
 export default App;
